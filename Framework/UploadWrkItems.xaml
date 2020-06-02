@@ -1,0 +1,204 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Testground" this:Testground.in_Str_ReportDownloadPath="Data\Temp" this:Testground.in_QueueName="UiDemoTrans" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Str_ReportDownloadPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_QueueName" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>788.8,1412</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Testground_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="22">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="44">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Testground" sap:VirtualizedContainerService.HintSize="452,1247.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="Str_PdfText" />
+      <Variable x:TypeArguments="s:String[]" Name="AryStr_PdfText" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="ListStr_dataItems" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="DicStrStr_invoice" />
+      <Variable x:TypeArguments="x:Int32" Name="Int_Cnt" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[Int_Cnt]" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="410.4,1154.4" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[Directory.GetFiles(in_Str_ReportDownloadPath)]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="375.2,1020" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="Str_WIID" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Str_WIID]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[item.Split("\".ToCharArray)(2).Split("_".ToCharArray)(0)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="333.6,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;WIID : &quot;+Str_WIID]" />
+            <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Read PDF Text" FileName="[item]" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" Range="All" Text="[Str_PdfText]" />
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="333.6,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416.8,411.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence DisplayName="Logings..." sap:VirtualizedContainerService.HintSize="375.2,318.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Warn" Message="[Str_PdfText]" />
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;#######################################&quot;]" />
+                  </Sequence>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+            <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+              <Assign.To>
+                <OutArgument x:TypeArguments="scg:List(x:String)">[ListStr_dataItems]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="scg:List(x:String)">[Str_PdfText.Split(Environment.NewLine.ToCharArray).ToList()]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:InvokeCode ContinueOnError="{x:Null}" Code="//문자열에서 빈 줄이 있으면 지운다&#xA;in_ListStr_dataItems.RemoveAll(item =&gt; String.IsNullOrWhiteSpace(item) == true);&#xA;//문자가 있는 줄에 양쪽 공백을 지운다.&#xA;for(int i = 0; i &lt; in_ListStr_dataItems.Count; i++){&#xA;    in_ListStr_dataItems[i] = in_ListStr_dataItems[i].Trim();&#xA;}&#xA;//출력&#xA;//in_ListStr_dataItems.ForEach(item =&gt; System.Console.WriteLine(&quot;|&quot;+item+&quot;|&quot;));&#xA;out_ListStr_dataItems = in_ListStr_dataItems;" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="333.6,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2" Language="CSharp">
+              <ui:InvokeCode.Arguments>
+                <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ListStr_dataItems">[ListStr_dataItems]</InArgument>
+                <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_ListStr_dataItems">[ListStr_dataItems]</OutArgument>
+              </ui:InvokeCode.Arguments>
+            </ui:InvokeCode>
+            <ui:InvokeCode ContinueOnError="{x:Null}" Code="//PDF에서 뽑은 데이터를 저장할 공간&#xA;Dictionary&lt;string, string&gt; invoice = new Dictionary&lt;string, string&gt;();&#xA;invoice.Add(&quot;taxid&quot;,&quot;-&quot;);&#xA;//전체 데이터를 돌면서 원하는 데이터를 가져온다.&#xA;for(int i = 0; i &lt; in_ListStr_dataItems.Count; i++){&#xA;&#x9;String[] temp = in_ListStr_dataItems[i].Split(' ');&#xA;&#x9;if(in_ListStr_dataItems[0].Contains(&quot;INVOICE&quot;)){&#xA;&#x9;&#x9;if(in_ListStr_dataItems[i].Contains(&quot;Invoice ID:&quot;)){&#xA;&#x9;&#x9;&#x9;temp = in_ListStr_dataItems[i].Split(':');&#xA;&#x9;&#x9;&#x9;invoice[&quot;invoiceid&quot;] = temp[1].Trim();&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;else if(in_ListStr_dataItems[i].Contains(&quot;Country:&quot;)){&#xA;&#x9;&#x9;&#x9;temp = in_ListStr_dataItems[i].Split(':');&#xA;&#x9;&#x9;&#x9;invoice[&quot;country&quot;] = temp[1].Trim();&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;else if(in_ListStr_dataItems[i].Contains(&quot;City:&quot;)){&#xA;&#x9;&#x9;&#x9;temp = in_ListStr_dataItems[i].Split(':');&#xA;&#x9;&#x9;&#x9;invoice[&quot;city&quot;] = temp[1].Trim().TrimEnd(',');&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;else if(in_ListStr_dataItems[i].Contains(&quot;Address&quot;)){&#xA;&#x9;&#x9;&#x9;temp = in_ListStr_dataItems[i].Split(':');&#xA;&#x9;&#x9;&#x9;invoice[&quot;date&quot;] = temp[2].Trim();&#xA;&#x9;&#x9;&#x9;invoice[&quot;address&quot;] = temp[1].Substring(0, temp[1].LastIndexOf('D'));&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;&#x9;else{&#xA;&#x9;&#x9;//주문번호, address, city, country&#xA;&#x9;&#x9;if(in_ListStr_dataItems[i].Contains(&quot;No.&quot;)){&#xA;&#x9;&#x9;&#x9;invoice[&quot;invoiceid&quot;] = temp[2];&#xA;&#x9;&#x9;&#x9;invoice[&quot;address&quot;] = temp[3]+&quot; &quot;+temp[4]+&quot; &quot;+temp[5];&#xA;&#x9;&#x9;&#x9;invoice[&quot;city&quot;] = in_ListStr_dataItems[i+1].Split(',')[0];&#xA;&#x9;&#x9;&#x9;invoice[&quot;country&quot;] = in_ListStr_dataItems[i+1].Split(',')[1].Trim();&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;//날짜&#xA;&#x9;&#x9;else if(in_ListStr_dataItems[i].Contains(&quot;Date:&quot;)){&#xA;&#x9;&#x9;&#x9;invoice.Add(&quot;date&quot;,temp[1]);&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;&#x9;//vendor&#xA;&#x9;if(in_ListStr_dataItems[i].Contains(&quot;Vendor:&quot;)){&#xA;&#x9;&#x9;temp = in_ListStr_dataItems[i].Split(':');&#xA;&#x9;&#x9;invoice.Add(&quot;vendor&quot;,temp[1].Trim());&#xA;&#x9;}&#xA;&#x9;//subtotal&#xA;&#x9;else if(in_ListStr_dataItems[i].Contains(&quot;Subtotal&quot;)){&#xA;&#x9;&#x9;temp = in_ListStr_dataItems[i].Split(':');&#xA;&#x9;&#x9;invoice.Add(&quot;subtotal&quot;,temp[1].Trim());&#xA;&#x9;}&#xA;&#x9;//tax&#xA;&#x9;else if(in_ListStr_dataItems[i].Contains(&quot;Tax:&quot;)){&#xA;&#x9;&#x9;temp = in_ListStr_dataItems[i].Split(':');&#xA;&#x9;&#x9;invoice.Add(&quot;tax&quot;,temp[1].Trim());&#xA;&#x9;}&#xA;&#x9;//total&#xA;&#x9;else if(in_ListStr_dataItems[i].Contains(&quot;Total:&quot;)){&#xA;&#x9;&#x9;temp = in_ListStr_dataItems[i].Split(':');&#xA;&#x9;&#x9;invoice.Add(&quot;total&quot;,temp[1].Trim());&#xA;&#x9;}&#xA;&#x9;//taxid&#xA;&#x9;else if(in_ListStr_dataItems[i].Contains(&quot;Tax ID&quot;)){&#xA;&#x9;&#x9;temp = in_ListStr_dataItems[i].Split(':');&#xA;&#x9;&#x9;invoice[&quot;taxid&quot;] = temp[1].Trim();&#xA;&#x9;}&#xA;}&#xA;//pdf에 있는 표에 있는 데이터처리&#xA;if(in_ListStr_dataItems[0].Contains(&quot;INVOICE&quot;)){&#xA;&#x9;String tempOut = in_ListStr_dataItems[in_ListStr_dataItems.Count-5];&#xA;&#x9;RegexOptions options = RegexOptions.None;&#xA;&#x9;Regex regex = new Regex(&quot;[ ]{2,}&quot;, options);     &#xA;&#x9;tempOut = regex.Replace(tempOut, &quot; &quot;);&#xA;&#x9;System.Console.WriteLine(&quot;***&quot;+tempOut+&quot;***&quot;);&#xA;&#x9;String[] Splited = tempOut.Split(' ');&#xA;&#x9;/*******************************************************************************/&#xA;&#x9;//priceper&#xA;&#x9;invoice.Add(&quot;priceper&quot;, Splited[Splited.Length-5]+&quot; &quot;+Splited[Splited.Length-4]);&#xA;&#x9;//quantity&#xA;&#x9;invoice.Add(&quot;quantity&quot;, Splited[Splited.Length-3]);&#xA;&#x9;//description&#xA;&#x9;tempOut = String.Empty;&#xA;&#x9;for(int i = 1; i &lt; Splited.Length - 5; i++){&#xA;&#x9;&#x9;tempOut += Splited[i]+&quot; &quot;;&#xA;&#x9;}&#xA;&#x9;tempOut.Trim();&#xA;&#x9;invoice.Add(&quot;descript&quot;,tempOut);&#xA;}&#xA;else{&#xA;&#x9;String tempOut = in_ListStr_dataItems[in_ListStr_dataItems.Count-4];&#xA;&#x9;RegexOptions options = RegexOptions.None;&#xA;&#x9;Regex regex = new Regex(&quot;[ ]{2,}&quot;, options);     &#xA;&#x9;tempOut = regex.Replace(tempOut, &quot; &quot;);&#xA;&#x9;String[] Splited = tempOut.Split(' ');&#xA;&#x9;/*******************************************************************************/&#xA;&#x9;//priceper&#xA;&#x9;invoice.Add(&quot;priceper&quot;, Splited[Splited.Length-4] + &quot; &quot; + Splited[Splited.Length-3]);&#xA;&#x9;//quantity&#xA;&#x9;invoice.Add(&quot;quantity&quot;, Splited[Splited.Length-5]);&#xA;&#x9;//description&#xA;&#x9;tempOut = String.Empty;&#xA;&#x9;for(int i = 0; i &lt; Splited.Length - 5; i++){&#xA;&#x9;&#x9;tempOut += Splited[i]+&quot; &quot;;&#xA;&#x9;}&#xA;&#x9;tempOut.Trim();&#xA;&#x9;invoice.Add(&quot;descript&quot;,tempOut);&#xA;}&#xA;System.Console.WriteLine(invoice[&quot;descript&quot;]+&quot;-------------------------------------------&quot;);&#xA;//결과 출력.&#xA;out_DicStrStr_invoice = invoice;&#xA;foreach(var item in invoice){&#xA;&#x9;System.Console.WriteLine(item.Key+&quot; : &quot;+item.Value);&#xA;}" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="333.6,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3" Language="CSharp">
+              <ui:InvokeCode.Arguments>
+                <InArgument x:TypeArguments="s:String[]" x:Key="in_AryStr_PdfText">[AryStr_PdfText]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Str_PdfText">[Str_PdfText]</InArgument>
+                <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ListStr_dataItems">[ListStr_dataItems]</InArgument>
+                <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="out_DicStrStr_invoice">[DicStrStr_invoice]</OutArgument>
+              </ui:InvokeCode.Arguments>
+            </ui:InvokeCode>
+            <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_QueueName]">
+              <ui:AddQueueItem.ItemInformation>
+                <InArgument x:TypeArguments="x:String" x:Key="invoiceid">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DicStrStr_invoice.Item(&quot;invoiceid&quot;)" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="taxid">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DicStrStr_invoice.Item(&quot;taxid&quot;)" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="address">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DicStrStr_invoice.Item(&quot;address&quot;)" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="country">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DicStrStr_invoice.Item(&quot;country&quot;)" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="city">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DicStrStr_invoice.item(&quot;city&quot;)" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="vendor">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DicStrStr_invoice.item(&quot;vendor&quot;)" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="subtotal">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DicStrStr_invoice.Item(&quot;subtotal&quot;)" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="total">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DicStrStr_invoice.Item(&quot;total&quot;)" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="date">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DicStrStr_invoice.Item(&quot;date&quot;)" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="tax">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DicStrStr_invoice.Item(&quot;tax&quot;)" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="quantity">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DicStrStr_invoice.Item(&quot;quantity&quot;)" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="priceper">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DicStrStr_invoice.Item(&quot;priceper&quot;)" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="wiid">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Str_WIID" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="descript">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DicStrStr_invoice.Item(&quot;descript&quot;)" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="filepath">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="item" />
+                </InArgument>
+              </ui:AddQueueItem.ItemInformation>
+            </ui:AddQueueItem>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+  </Sequence>
+</Activity>

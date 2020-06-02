@@ -1,0 +1,12 @@
+
+0W
+0h
+0e
+0n
+0 
+0a
+0 
+0S
+0y
+0s
+0tem Error is thrown in the process, a screenshot is taken and saved to Exception_Screenshots folder.
