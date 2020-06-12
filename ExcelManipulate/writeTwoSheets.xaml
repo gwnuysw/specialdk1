@@ -1,0 +1,136 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="writeTwoSheets" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_Transaction" Type="InArgument(ui:QueueItem)" />
+    <x:Property Name="in_Dbl_wonAmount" Type="InArgument(x:Double)" />
+    <x:Property Name="in_DT_invoiceTotal" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_DT_customer" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_DT_Exchange" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_Str_Notes" Type="InArgument(x:String)" />
+    <x:Property Name="in_DT_ISO" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_Int_TransactionNumber" Type="InArgument(x:Int32)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>828,1005.6</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>writeTwoSheets_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="23">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="24">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="writeTwoSheets" sap:VirtualizedContainerService.HintSize="519.2,840.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="Str_Code" />
+      <Variable x:TypeArguments="x:String" Name="Str_Numeric" />
+      <Variable x:TypeArguments="x:String" Name="Str_IE" />
+      <Variable x:TypeArguments="x:String" Name="Str_internal" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="DataRow[] dr = in_DT_ISO.Select(&quot;Country = '&quot;+in_Str_Country+&quot;'&quot;);&#xD;&#xA;if(dr.Length &lt; 1){&#xD;&#xA;&#x9;out_Str_Code = &quot;-&quot;;&#xD;&#xA;&#x9;out_Str_Numeric = &quot;-&quot;;&#xD;&#xA;&#x9;out_Str_internal = &quot;-&quot;;&#xD;&#xA;}&#xD;&#xA;else{&#xD;&#xA;&#x9;out_Str_Code = (string)dr[0][&quot;Alpha-2 code&quot;];&#xD;&#xA;&#x9;out_Str_Numeric = (string)dr[0][&quot;Numeric&quot;];&#xD;&#xA;&#x9;out_Str_internal = (string)dr[0][&quot;Internal&quot;];&#xD;&#xA;}&#xD;&#xA;if(in_Str_Toaddress.Equals(&quot;-&quot;)){&#xD;&#xA;&#x9;out_Str_IE = &quot;E&quot;;&#xD;&#xA;}&#xD;&#xA;else{&#xD;&#xA;&#x9;out_Str_IE = &quot;I&quot;;&#xD;&#xA;}" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="477.6,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_Country">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Transaction.SpecificContent(&quot;country&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_ISO">
+          <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_DT_ISO" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_Str_Code">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Str_Code" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_Str_Numeric">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Str_Numeric" />
+        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_Toaddress">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Transaction.SpecificContent(&quot;toaddress&quot;).ToString" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_Str_IE">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Str_IE" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_Str_internal">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Str_internal" />
+        </OutArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{in_Transaction.SpecificContent(&quot;invoiceid&quot;).ToString, in_Transaction.SpecificContent(&quot;vendor&quot;).ToString, in_Transaction.SpecificContent(&quot;date&quot;).ToString, in_Transaction.SpecificContent(&quot;quantity&quot;).ToString, (Cdbl(in_Transaction.SpecificContent(&quot;priceper&quot;).ToString.Split(&quot; &quot;.ToCharArray)(0))*in_Dbl_wonAmount).ToString, (Cdbl(in_Transaction.SpecificContent(&quot;total&quot;).ToString.Split(&quot; &quot;.ToCharArray)(0))*in_Dbl_wonAmount).ToString, in_Str_Notes}]" DataTable="[in_DT_invoiceTotal]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="477.6,22.4" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{in_Int_TransactionNumber.ToString, in_Transaction.SpecificContent(&quot;vendor&quot;).ToString, in_Transaction.SpecificContent(&quot;address&quot;).ToString, in_Transaction.SpecificContent(&quot;city&quot;).ToString, in_Transaction.SpecificContent(&quot;country&quot;).ToString, Str_Code, Str_IE, Str_internal}]" DataTable="[in_DT_customer]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="477.6,22.4" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="477.6,418.4" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" WorkbookPath="[in_Config(&quot;resultPath&quot;).ToString+in_Config(&quot;invoiceTrackerName&quot;).ToString]">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,308.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="sd:DataTable" Name="DT_" />
+              <Variable x:TypeArguments="sd:DataTable" Name="DT_Total" />
+              <Variable x:TypeArguments="sd:DataTable" Name="DT_Customer" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ExcelWriteRange AddHeaders="False" DataTable="[in_DT_invoiceTotal]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[in_Config(&quot;trackerSheetName1&quot;).ToString]" StartingCell="[&quot;B&quot;+(in_Int_TransactionNumber+3).ToString]" />
+            <ui:ExcelWriteRange AddHeaders="False" DataTable="[in_DT_customer]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="[in_Config(&quot;trackerSheetName2&quot;).ToString]" StartingCell="[&quot;C&quot;+(in_Int_TransactionNumber+3).ToString]" />
+          </Sequence>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+    </ui:ExcelApplicationScope>
+  </Sequence>
+</Activity>

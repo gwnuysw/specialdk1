@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>757.6,2540.8</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>760.8,2540.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>System1_DownloadPDF_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="22">
@@ -59,6 +59,8 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="System1_DownloadPDF" sap:VirtualizedContainerService.HintSize="624.8,2376" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -205,7 +207,7 @@
                         <InArgument x:TypeArguments="x:String">[path.Combine(Environment.CurrentDirectory, in_ReportsDownloadPath)]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[Str_Path]" />
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[Str_Path+row(&quot;WIID&quot;).ToString+&quot;_&quot;+Str_FileName]" />
                     <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'Edit'" sap:VirtualizedContainerService.HintSize="416.8,107.2" sap2010:WorkflowViewState.IdRef="GetValue_1">
                       <ui:GetValue.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9bbf7083-6be1-40fe-9846-e7abbb41ee06" InformativeScreenshot="8f260964e7806df51a5549b52cb38043" Selector="&lt;wnd app='iexplore.exe' cls='#32770' title='다른 이름으로 저장' /&gt;&lt;wnd aaname='탐색 창' cls='DirectUIHWND' /&gt;&lt;wnd aaname='파일 이름:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;">
@@ -221,7 +223,7 @@
                         <OutArgument x:TypeArguments="x:String">[Str_FileName]</OutArgument>
                       </ui:GetValue.Value>
                     </ui:GetValue>
-                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Type Into 'Edit'" sap:VirtualizedContainerService.HintSize="416.8,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_1" SimulateType="True" Text="[Str_Path+&quot;\&quot;+row(&quot;WIID&quot;).ToString+&quot;_&quot;+Str_FileName]">
+                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Type Into 'Edit'" sap:VirtualizedContainerService.HintSize="416.8,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_1" SimulateType="True" Text="[Str_Path+row(&quot;WIID&quot;).ToString+&quot;_&quot;+Str_FileName]">
                       <ui:TypeInto.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c2df8c49-ddc5-43df-9f38-66f6b27c47ab" InformativeScreenshot="fca3ebd1da950d5469ddc279750fb47c" Selector="&lt;wnd app='iexplore.exe' cls='#32770' title='다른 이름으로 저장' /&gt;&lt;wnd ctrlid='1001' title='*' /&gt;">
                           <ui:Target.TimeoutMS>

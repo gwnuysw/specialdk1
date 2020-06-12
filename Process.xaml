@@ -1,15 +1,19 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="io_DT_customer" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="in_DT_invoiceTotal" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_DT_iso" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_Int_TransactionNumber" Type="InArgument(x:Int32)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>768.8,677.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>928.8,1061.6</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <sco:Collection x:TypeArguments="x:String">
+    <scg:List x:TypeArguments="x:String" Capacity="23">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -31,10 +35,12 @@
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
-    </sco:Collection>
+      <x:String>System.Web.ModelBinding</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <sco:Collection x:TypeArguments="AssemblyReference">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="25">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -56,9 +62,18 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.CV</AssemblyReference>
-    </sco:Collection>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Web</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="392.8,512.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="392.8,896.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="Str_Code2" />
+      <Variable x:TypeArguments="x:String" Name="Str_Numeric" />
+      <Variable x:TypeArguments="x:String" Name="Str_Internal" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -74,6 +89,52 @@
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke System1_AddinvoicetoACME workflow" sap:VirtualizedContainerService.HintSize="351.2,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="System1/System1_AddinvoicetoACME.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_QueueItem">[in_TransactionItem]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke searchISObyCountry workflow" sap:VirtualizedContainerService.HintSize="351.2,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="ExcelManipulate\searchISObyCountry.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_ISO">[in_DT_iso]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_Country">[in_TransactionItem.SpecificContent("country").ToString]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_Str_Code2">[Str_Code2]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_Str_Numeric">[Str_Numeric]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_Str_Internal">[Str_Internal]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke writeInvoice workflow" sap:VirtualizedContainerService.HintSize="351.2,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="ExcelManipulate\writeInvoice.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_resultPath">[in_Config("resultPath").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_invoiceName">[in_Config("invoiceName").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_copySheet">[in_Config("copySheetName").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_invoiceNumber">[in_TransactionItem.SpecificContent("invoiceid").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_Date">[in_TransactionItem.SpecificContent("date").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_VendorID">[in_TransactionItem.SpecificContent("wiid").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_VendorName">[in_TransactionItem.SpecificContent("vendor").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_Address">[in_TransactionItem.SpecificContent("address").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_city">[in_TransactionItem.SpecificContent("city").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_country">[in_TransactionItem.SpecificContent("country").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_countryCode">[Str_Code2]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_qtty">[in_TransactionItem.SpecificContent("quantity").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_description">[in_TransactionItem.SpecificContent("descript").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_priceper">[in_TransactionItem.SpecificContent("priceper").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_subtotal">[in_TransactionItem.SpecificContent("subtotal").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_tax">[in_TransactionItem.SpecificContent("tax").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Str_total">[in_TransactionItem.SpecificContent("subtotal").ToString]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke writeTracker workflow" sap:VirtualizedContainerService.HintSize="351.2,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="ExcelManipulate\writeTracker.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+          <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+        </InArgument>
+        <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_Transaction">
+          <mva:VisualBasicValue x:TypeArguments="ui:QueueItem" ExpressionText="in_TransactionItem" />
+        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DT_ISO">
+          <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_DT_iso" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_Int_TransactionNumber">
+          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="in_Int_TransactionNumber" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>

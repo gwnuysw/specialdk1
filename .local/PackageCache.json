@@ -2,11 +2,18 @@
   "Packages": [
     {
       "Package": {
-        "Id": "python",
-        "Version": "3.9.0-b1"
+        "Id": "BalaReva.Excel.Activities",
+        "Version": "2019.4.0"
       },
-      "Assemblies": [],
-      "Path": "C:\\Users\\KoreaScoring\\.nuget\\packages\\python\\3.9.0-b1"
+      "Assemblies": [
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\balareva.excel.activities/2019.4.0\\lib/BalaReva.Excel.Base.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\balareva.excel.activities/2019.4.0\\lib/BalaReva.Excel.Design.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\balareva.excel.activities/2019.4.0\\lib/BalaReva.Excel.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\balareva.excel.activities/2019.4.0\\lib/BalaReva.Utilities.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\microsoft.office.interop.excel/15.0.4795.1000\\lib/net20/Microsoft.Office.Interop.Excel.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\microsoftofficecore/15.0.0\\lib/net35/Office.dll"
+      ],
+      "Path": "C:\\Users\\KoreaScoring\\.nuget\\packages\\balareva.excel.activities\\2019.4.0"
     },
     {
       "Package": {
@@ -28,6 +35,25 @@
         "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.excel.activities/2.8.5\\lib/net461/UiPath.Excel.dll"
       ],
       "Path": "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.excel.activities\\2.8.5"
+    },
+    {
+      "Package": {
+        "Id": "UiPath.Mail.Activities",
+        "Version": "1.8.5"
+      },
+      "Assemblies": [
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\bouncycastle/1.8.5\\lib/BouncyCastle.Crypto.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\interop.domino.dll/1.0.0\\lib/Interop.Domino.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\microsoft.exchange.webservices/2.2.0\\lib/40/Microsoft.Exchange.WebServices.Auth.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\microsoft.exchange.webservices/2.2.0\\lib/40/Microsoft.Exchange.WebServices.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\system.valuetuple/4.5.0\\lib/net461/System.ValueTuple.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.mail.activities/1.8.5\\lib/net461/MailKit.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.mail.activities/1.8.5\\lib/net461/MimeKit.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.mail.activities/1.8.5\\lib/net461/UiPath.Mail.Activities.Design.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.mail.activities/1.8.5\\lib/net461/UiPath.Mail.Activities.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.mail.activities/1.8.5\\lib/net461/UiPath.Mail.dll"
+      ],
+      "Path": "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.mail.activities\\1.8.5"
     },
     {
       "Package": {
@@ -117,25 +143,6 @@
         "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.vision/2.0.3\\lib/net461/UiPath.Vision.dll"
       ],
       "Path": "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.uiautomation.activities\\20.4.1"
-    },
-    {
-      "Package": {
-        "Id": "UiPath.Mail.Activities",
-        "Version": "1.8.5"
-      },
-      "Assemblies": [
-        "C:\\Users\\KoreaScoring\\.nuget\\packages\\bouncycastle/1.8.5\\lib/BouncyCastle.Crypto.dll",
-        "C:\\Users\\KoreaScoring\\.nuget\\packages\\interop.domino.dll/1.0.0\\lib/Interop.Domino.dll",
-        "C:\\Users\\KoreaScoring\\.nuget\\packages\\microsoft.exchange.webservices/2.2.0\\lib/40/Microsoft.Exchange.WebServices.Auth.dll",
-        "C:\\Users\\KoreaScoring\\.nuget\\packages\\microsoft.exchange.webservices/2.2.0\\lib/40/Microsoft.Exchange.WebServices.dll",
-        "C:\\Users\\KoreaScoring\\.nuget\\packages\\system.valuetuple/4.5.0\\lib/net461/System.ValueTuple.dll",
-        "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.mail.activities/1.8.5\\lib/net461/MailKit.dll",
-        "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.mail.activities/1.8.5\\lib/net461/MimeKit.dll",
-        "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.mail.activities/1.8.5\\lib/net461/UiPath.Mail.Activities.Design.dll",
-        "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.mail.activities/1.8.5\\lib/net461/UiPath.Mail.Activities.dll",
-        "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.mail.activities/1.8.5\\lib/net461/UiPath.Mail.dll"
-      ],
-      "Path": "C:\\Users\\KoreaScoring\\.nuget\\packages\\uipath.mail.activities\\1.8.5"
     }
   ],
   "Conflicts": [],
@@ -144,6 +151,20 @@
       "Id": "AvalonEdit",
       "Version": "5.0.3",
       "Dependencies": []
+    },
+    "BalaReva.Excel.Activities": {
+      "Id": "BalaReva.Excel.Activities",
+      "Version": "2019.4.0",
+      "Dependencies": [
+        {
+          "Item1": "Microsoft.Office.Interop.Excel",
+          "Item2": "[15.0.4795.1000, )"
+        },
+        {
+          "Item1": "MicrosoftOfficeCore",
+          "Item2": "[15.0.0, )"
+        }
+      ]
     },
     "BitMiracle.Docotic.Pdf": {
       "Id": "BitMiracle.Docotic.Pdf",
@@ -205,6 +226,11 @@
       "Version": "2.2.0",
       "Dependencies": []
     },
+    "Microsoft.Office.Interop.Excel": {
+      "Id": "Microsoft.Office.Interop.Excel",
+      "Version": "15.0.4795.1000",
+      "Dependencies": []
+    },
     "Microsoft.Rest.ClientRuntime": {
       "Id": "Microsoft.Rest.ClientRuntime",
       "Version": "2.3.20",
@@ -218,6 +244,11 @@
     "Microsoft.VisualStudio.OLE.Interop": {
       "Id": "Microsoft.VisualStudio.OLE.Interop",
       "Version": "7.10.6071",
+      "Dependencies": []
+    },
+    "MicrosoftOfficeCore": {
+      "Id": "MicrosoftOfficeCore",
+      "Version": "15.0.0",
       "Dependencies": []
     },
     "Newtonsoft.Json": {
@@ -234,11 +265,6 @@
           "Item2": "[1.0.0, )"
         }
       ]
-    },
-    "python": {
-      "Id": "python",
-      "Version": "3.9.0-b1",
-      "Dependencies": []
     },
     "SharpZipLib": {
       "Id": "SharpZipLib",
@@ -468,6 +494,19 @@
     },
     {
       "Package": {
+        "Id": "BalaReva.Excel.Activities",
+        "Version": "2019.4.0"
+      },
+      "Assemblies": [
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\balareva.excel.activities\\2019.4.0\\lib\\BalaReva.Excel.Base.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\balareva.excel.activities\\2019.4.0\\lib\\BalaReva.Excel.Design.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\balareva.excel.activities\\2019.4.0\\lib\\BalaReva.Excel.dll",
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\balareva.excel.activities\\2019.4.0\\lib\\BalaReva.Utilities.dll"
+      ],
+      "Path": "C:\\Users\\KoreaScoring\\.nuget\\packages\\balareva.excel.activities\\2019.4.0"
+    },
+    {
+      "Package": {
         "Id": "BitMiracle.Docotic.Pdf",
         "Version": "5.10.9957"
       },
@@ -574,6 +613,16 @@
     },
     {
       "Package": {
+        "Id": "Microsoft.Office.Interop.Excel",
+        "Version": "15.0.4795.1000"
+      },
+      "Assemblies": [
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\microsoft.office.interop.excel\\15.0.4795.1000\\lib\\net20\\Microsoft.Office.Interop.Excel.dll"
+      ],
+      "Path": "C:\\Users\\KoreaScoring\\.nuget\\packages\\microsoft.office.interop.excel\\15.0.4795.1000"
+    },
+    {
+      "Package": {
         "Id": "Microsoft.Rest.ClientRuntime",
         "Version": "2.3.20"
       },
@@ -591,6 +640,16 @@
         "C:\\Users\\KoreaScoring\\.nuget\\packages\\microsoft.visualstudio.ole.interop\\7.10.6071\\lib\\Microsoft.VisualStudio.OLE.Interop.dll"
       ],
       "Path": "C:\\Users\\KoreaScoring\\.nuget\\packages\\microsoft.visualstudio.ole.interop\\7.10.6071"
+    },
+    {
+      "Package": {
+        "Id": "MicrosoftOfficeCore",
+        "Version": "15.0.0"
+      },
+      "Assemblies": [
+        "C:\\Users\\KoreaScoring\\.nuget\\packages\\microsoftofficecore\\15.0.0\\lib\\net35\\Office.dll"
+      ],
+      "Path": "C:\\Users\\KoreaScoring\\.nuget\\packages\\microsoftofficecore\\15.0.0"
     },
     {
       "Package": {
@@ -614,14 +673,6 @@
         "C:\\Users\\KoreaScoring\\.nuget\\packages\\npoi\\2.4.1\\lib\\net45\\NPOI.dll"
       ],
       "Path": "C:\\Users\\KoreaScoring\\.nuget\\packages\\npoi\\2.4.1"
-    },
-    {
-      "Package": {
-        "Id": "python",
-        "Version": "3.9.0-b1"
-      },
-      "Assemblies": [],
-      "Path": "C:\\Users\\KoreaScoring\\.nuget\\packages\\python\\3.9.0-b1"
     },
     {
       "Package": {

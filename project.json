@@ -3,7 +3,7 @@
   "description": "SpecialDK1",
   "main": "Main.xaml",
   "dependencies": {
-    "python": "[3.9.0-b1]",
+    "BalaReva.Excel.Activities": "[2019.4.0]",
     "UiPath.Excel.Activities": "[2.8.5]",
     "UiPath.Mail.Activities": "[1.8.5]",
     "UiPath.PDF.Activities": "[3.2.2]",

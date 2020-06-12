@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Dispatcher" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="788.8,877.6" sap2010:WorkflowViewState.IdRef="Dispatcher_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Dispatcher" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="928.8,1050.4" sap2010:WorkflowViewState.IdRef="Dispatcher_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -48,10 +48,9 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Dispatcher" sap:VirtualizedContainerService.HintSize="416.8,712.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Dispatcher" sap:VirtualizedContainerService.HintSize="516.8,885.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="Config" />
     </Sequence.Variables>
@@ -60,28 +59,55 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke KillAllProcesses workflow" sap:VirtualizedContainerService.HintSize="375.2,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Framework\KillAllProcesses.xaml">
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke KillAllProcesses workflow" sap:VirtualizedContainerService.HintSize="475.2,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Framework\KillAllProcesses.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke InitAllSettings workflow" sap:VirtualizedContainerService.HintSize="375.2,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\InitAllSettings.xaml">
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke InitAllSettings workflow" sap:VirtualizedContainerService.HintSize="475.2,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\InitAllSettings.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">Data\Config.xlsx</InArgument>
         <InArgument x:TypeArguments="s:String[]" x:Key="in_ConfigSheets">[{"Settings","Constants"}]</InArgument>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Config">[Config]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <Sequence sap:VirtualizedContainerService.HintSize="375.2,236" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence sap:VirtualizedContainerService.HintSize="475.2,408.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Delete_2" Path="[path.Combine(Environment.CurrentDirectory, config(&quot;ReportsDownloadPath&quot;).ToString)]" />
-      <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="333.6,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="[path.Combine(Environment.CurrentDirectory, config(&quot;ReportsDownloadPath&quot;).ToString)]" />
+      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="433.6,316" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+        <TryCatch.Try>
+          <Sequence sap:VirtualizedContainerService.HintSize="375.2,236" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Delete_2" Path="[path.Combine(Environment.CurrentDirectory, config(&quot;ReportsDownloadPath&quot;).ToString)]" />
+            <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="333.6,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_3" Path="[path.Combine(Environment.CurrentDirectory, config(&quot;ReportsDownloadPath&quot;).ToString)]" />
+          </Sequence>
+        </TryCatch.Try>
+        <TryCatch.Catches>
+          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,151.2" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ActivityAction x:TypeArguments="s:Exception">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </ActivityAction.Argument>
+              <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="333.6,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="[path.Combine(Environment.CurrentDirectory, config(&quot;ReportsDownloadPath&quot;).ToString)]" />
+            </ActivityAction>
+          </Catch>
+        </TryCatch.Catches>
+      </TryCatch>
     </Sequence>
-    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke uploadQueueItems workflow" sap:VirtualizedContainerService.HintSize="375.2,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Framework\uploadQueueItems.xaml">
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke uploadQueueItems workflow" sap:VirtualizedContainerService.HintSize="475.2,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Framework\uploadQueueItems.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>

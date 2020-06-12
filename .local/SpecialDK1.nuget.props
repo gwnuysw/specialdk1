@@ -14,6 +14,5 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgExtended_Wpf_Toolkit Condition=" '$(PkgExtended_Wpf_Toolkit)' == '' ">C:\Users\KoreaScoring\.nuget\packages\extended.wpf.toolkit\2.8.0</PkgExtended_Wpf_Toolkit>
-    <Pkgpython Condition=" '$(Pkgpython)' == '' ">C:\Users\KoreaScoring\.nuget\packages\python\3.9.0-b1</Pkgpython>
   </PropertyGroup>
 </Project>
