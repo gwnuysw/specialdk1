@@ -4,11 +4,12 @@
     <x:Property Name="in_Transaction" Type="InArgument(ui:QueueItem)" />
     <x:Property Name="in_DT_ISO" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_Int_TransactionNumber" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_Str_Numeric" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>928.8,1124</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>716,1124</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>writeTracker_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="23">
@@ -180,7 +181,7 @@
                               <av:Size x:Key="ShapeSize">200,52.8</av:Size>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke writeTwoSheets workflow" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="ExcelManipulate\writeTwoSheets.xaml">
+                          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke writeTwoSheets workflow" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="ExcelManipulate\writeTwoSheets.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
                               <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
                                 <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
@@ -208,6 +209,9 @@
                               </InArgument>
                               <InArgument x:TypeArguments="x:Int32" x:Key="in_Int_TransactionNumber">
                                 <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="in_Int_TransactionNumber" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_Str_numeric">
+                                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Str_Numeric" />
                               </InArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                             <sap:WorkflowViewStateService.ViewState>
@@ -258,14 +262,10 @@
                       <av:PointCollection x:Key="ConnectorLocation">540,456.4 540,486.4 300,486.4 300,516.4</av:PointCollection>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke searchGoogle workflow" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Exchange\searchGoogle.xaml">
+                  <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke searchGoogle workflow" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Exchange\searchGoogle.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_Str_from">
-                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Transaction.SpecificContent(&quot;total&quot;).ToString.Split(&quot; &quot;.ToCharArray)(1)" />
-                      </InArgument>
-                      <OutArgument x:TypeArguments="x:String" x:Key="out_Str_WonAmount">
-                        <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Str_wonAmount" />
-                      </OutArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Str_from">[in_Transaction.SpecificContent("total").ToString.Split(" ".ToCharArray)(1)]</InArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="out_Str_WonAmount">[Str_wonAmount]</OutArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
